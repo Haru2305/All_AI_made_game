@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101112">
+  <meta name="description" content="地殻の底を削り、契約と熱圧を管理する深層採掘インクリメンタルゲーム。">
+  <title>第七坑 — 深層採掘局</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="wordmark" href="#" aria-label="第七坑 ホーム" data-tab-link="rig">
+      <span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="wordmark-copy"><b>第七坑</b><small>DEEP EXTRACTION DIVISION</small></span>
+    </a>
+    <div class="top-location"><span class="status-dot"></span><span>夜勤 <b id="shift-no">01</b></span><span class="location-slash">/</span><span id="header-depth">天蓋杭・第 01 区</span></div>
+    <div class="top-resources" aria-label="資源">
+      <div class="resource"><span class="resource-icon ore-icon">◆</span><span><small>抽出総量</small><b id="resource-ore">0</b></span></div>
+      <div class="resource"><span class="resource-icon cash-icon">¥</span><span><small>操業資金</small><b id="resource-cash">0</b></span></div>
+      <div class="resource"><span class="resource-icon data-icon">▥</span><span><small>記録片</small><b id="resource-data">0</b></span></div>
+    </div>
+    <button class="icon-button save-indicator" id="save-indicator" title="保存状態"><span class="save-light"></span><span>記録済</span></button>
+    <button class="mobile-menu" id="mobile-menu" aria-label="メニュー" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="nav-label">操業管理</div>
+      <nav class="primary-nav" aria-label="メインメニュー">
+        <button class="nav-item active" data-tab="rig"><span class="nav-icon">◈</span><span>坑内管制</span><kbd>01</kbd></button>
+        <button class="nav-item" data-tab="research"><span class="nav-icon">⌘</span><span>技術台帳</span><kbd>02</kbd></button>
+        <button class="nav-item" data-tab="contracts"><span class="nav-icon">▤</span><span>外部契約</span><kbd>03</kbd></button>
+        <button class="nav-item" data-tab="mandate"><span class="nav-icon">⊙</span><span>操業免許</span><kbd>04</kbd></button>
+        <button class="nav-item" data-tab="records"><span class="nav-icon">▧</span><span>事故記録</span><kbd>05</kbd></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="shift-card">
+        <div class="shift-card-top"><span class="signal-bar"><i></i><i></i><i></i><i></i></span><span id="shift-clock">00:00</span></div>
+        <b id="shift-state">通常操業</b>
+        <p id="shift-note">班員は全員、記録上は在籍。</p>
+      </div>
+      <button class="sidebar-footer" data-action="open-settings"><span>⚙</span> 保全・保存 <span class="chevron">↗</span></button>
+    </aside>
+
+    <main class="main-content" id="main-content" tabindex="-1">
+      <div id="screen"></div>
+    </main>
+
+    <aside class="right-rail" id="right-rail" aria-label="坑内情報"></aside>
+  </div>
+
+  <div class="mobile-dock" id="mobile-dock" aria-label="メインメニュー">
+    <button class="active" data-tab="rig"><span>◈</span>坑内</button>
+    <button data-tab="research"><span>⌘</span>技術</button>
+    <button data-tab="contracts"><span>▤</span>契約</button>
+    <button data-tab="mandate"><span>⊙</span>免許</button>
+    <button data-tab="records"><span>▧</span>記録</button>
+  </div>
+
+  <div id="modal-root"></div>
+  <div class="toast-stack" id="toast-stack" aria-live="polite" aria-atomic="false"></div>
+</body>
+</html>
