@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111312">
+  <meta name="description" content="灰に沈んだ大陸を渡り、航路と産業圏を築くオープンワールド・インクリメンタル。">
+  <title>灰線航路 — ASHLINE ATLAS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="灰線航路">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span class="brand-copy"><b>灰線航路</b><small>ASHLINE ATLAS <em>FIELD OFFICE 07</em></small></span>
+    </a>
+    <div class="run-readout">
+      <span class="run-label">CHARTER <b id="charter-count">01</b></span>
+      <span class="readout-sep"></span>
+      <span class="run-label">経過 <b id="run-time">00:00</b></span>
+      <span class="readout-sep"></span>
+      <span class="save-state"><i></i><span id="save-state">自動記録</span></span>
+    </div>
+    <div class="resource-strip" id="resource-strip"></div>
+    <button class="icon-button" data-action="open-settings" title="記録庫と設定" aria-label="記録庫と設定">⌘</button>
+  </header>
+
+  <main class="shell">
+    <nav class="rail" aria-label="主要メニュー">
+      <div class="rail-kicker">OPERATIONS</div>
+      <button class="nav-item active" data-action="switch-tab" data-tab="world"><span class="nav-glyph">⌖</span><span>大陸図</span><small>01</small></button>
+      <button class="nav-item" data-action="switch-tab" data-tab="fleet"><span class="nav-glyph">▰</span><span>装甲車</span><small>02</small></button>
+      <button class="nav-item" data-action="switch-tab" data-tab="network"><span class="nav-glyph">⌘</span><span>前哨網</span><small id="nav-outposts">00</small></button>
+      <button class="nav-item" data-action="switch-tab" data-tab="research"><span class="nav-glyph">◉</span><span>技術局</span><small id="nav-tech">00</small></button>
+      <button class="nav-item" data-action="switch-tab" data-tab="orders"><span class="nav-glyph">≋</span><span>諸派閥</span><small id="nav-orders">03</small></button>
+      <button class="nav-item" data-action="switch-tab" data-tab="archive"><span class="nav-glyph">▤</span><span>航海誌</span><small id="nav-archive">00</small></button>
+      <div class="rail-bottom">
+        <div class="signal-mark"><span></span><span></span><span></span><span></span><span></span></div>
+        <small>信号強度</small>
+        <b id="signal-quality">LOCAL</b>
+      </div>
+    </nav>
+
+    <section class="stage">
+      <div class="stage-head">
+        <div>
+          <div class="eyebrow" id="view-kicker">FIELD CARTOGRAPHY <span>///</span> SECTOR 01</div>
+          <h1 id="view-title">大陸踏査図</h1>
+          <p id="view-subtitle">誰も所有していない土地が、まだ地図の外にある。</p>
+        </div>
+        <div class="stage-actions">
+          <div class="status-chip"><i class="pulse-dot"></i><span>航行システム</span><b>稼働中</b></div>
+          <button class="quiet-button" data-action="scan">⌁　広域走査 <kbd>8 電力</kbd></button>
+        </div>
+      </div>
+      <div id="main-view" class="main-view"></div>
+      <div class="event-feed" id="event-feed" aria-live="polite">
+        <span class="feed-label">FIELD LOG</span><span id="latest-log">車列の発進準備が整った。</span>
+      </div>
+      <footer class="footline"><span>外縁大陸 / 旧環状工業帯</span><span>観測所から <b id="distance-home">0</b> 六角</span><span>LOCAL SAVE · <b>端末内記録</b></span></footer>
+    </section>
+  </main>
+
+  <dialog id="modal" class="modal">
+    <div class="modal-top"><div><div class="eyebrow">FIELD OFFICE 07 <span>///</span> RECORDS</div><h2 id="modal-title">航海誌</h2></div><button class="icon-button" data-action="close-modal" aria-label="閉じる">×</button></div>
+    <div id="modal-body"></div>
+  </dialog>
+  <input id="import-file" type="file" accept="application/json,.json" hidden>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="game.js"></script>
+</body>
+</html>
